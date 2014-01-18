@@ -32,11 +32,11 @@ public class AIBattle implements ApplicationListener {
     float x, y = 0;
     Field field;
     
-    Character character;
+    Swordsman swordsman;
 
     @Override
     public void create() {
-    	character = new Character();
+    	swordsman = new Swordsman();
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
@@ -65,7 +65,7 @@ public class AIBattle implements ApplicationListener {
         // all drops
         batch.begin();
         field.draw(batch);
-        character.draw(batch);
+        swordsman.draw(batch);
         batch.end();
         x +=1;
         y +=1;
