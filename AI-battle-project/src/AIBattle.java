@@ -31,7 +31,7 @@ public class AIBattle implements ApplicationListener {
     ShapeRenderer shapeRenderer;
     float x, y = 0;
     Field field;
-    final int CHARACTER_SIZE = 32;
+    static final int CHARACTER_SIZE = 32;
     
     Swordsman swordsman;
 

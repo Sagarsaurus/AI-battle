@@ -14,7 +14,7 @@ public class Swordsman extends Character{
 
 	public Swordsman(){
 		texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
-		sprite = new Sprite(texture, 0, 0, 32, 32);
+		sprite = new Sprite(texture, 0, 0, AIBattle.CHARACTER_SIZE, AIBattle.CHARACTER_SIZE);
 	}
 	
 public void draw(SpriteBatch batch){
