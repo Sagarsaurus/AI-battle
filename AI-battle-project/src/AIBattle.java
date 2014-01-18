@@ -32,6 +32,7 @@ public class AIBattle implements ApplicationListener {
     float x, y = 0;
     Field field;
     static final int CHARACTER_SIZE = 32;
+    Castle castle1, castle2;
     
     Swordsman swordsman;
 
@@ -44,6 +45,9 @@ public class AIBattle implements ApplicationListener {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         field = new Field();
+        castle1 = new Castle(0,240);
+        //800 - 64 needs to be better coded
+        castle2 = new Castle(800-64, 240);
     }
 
     @Override
@@ -67,6 +71,8 @@ public class AIBattle implements ApplicationListener {
         batch.begin();
         field.draw(batch);
         swordsman.draw(batch);
+        castle1.draw(batch);
+        castle2.draw(batch);
         batch.end();
         x +=1;
         y +=1;
