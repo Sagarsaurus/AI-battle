@@ -8,18 +8,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Swordsman extends Character{
 	boolean LIFE = true;
 	final static int NUM_CHAR_SPACES = 6;
-	int HP;
+	
 	
 	public Swordsman(){
-		this(0,0);
+		this(0,0,0);
 		
 	}
 	
-	public Swordsman(int x, int y)
+	public Swordsman(int x, int y, int teamNum)
 	{
-	    super(x,y);
+	    super(x,y, teamNum);
 	    texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
-	    sprite = new Sprite(texture, 0, 0, AIBattle.CHARACTER_SIZE, AIBattle.CHARACTER_SIZE);
+	    sprite = new Sprite(texture, 0, 0, GameController.CHARACTER_SIZE, GameController.CHARACTER_SIZE);
 	    HP = 1;
 	}
 	
@@ -36,17 +36,9 @@ public class Swordsman extends Character{
 	}
 	
 	public void moveForward(){		
-		x+=AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES * Gdx.graphics.getDeltaTime();
+		x+=GameController.CHARACTER_SIZE*NUM_CHAR_SPACES * Gdx.graphics.getDeltaTime();
 	}
-	
-	public float getX() {
-		return x;
-	}
-	
-	public float getY() {
-		return y;
-	}
-	
+
 	public Sprite getSprite() {
 		return sprite;
 	}

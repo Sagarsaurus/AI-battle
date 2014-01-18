@@ -5,8 +5,8 @@ public class Main {
    public static void main(String[] args) {
       LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
       cfg.title = "AI Battle";
-      cfg.width = AIBattle.CHARACTER_SIZE * 30;
-      cfg.height = AIBattle.CHARACTER_SIZE * 20;
+      cfg.width = GameController.CHARACTER_SIZE * 30;
+      cfg.height = GameController.CHARACTER_SIZE * 20;
       new LwjglApplication(new AIBattle(), cfg);
    }
 }

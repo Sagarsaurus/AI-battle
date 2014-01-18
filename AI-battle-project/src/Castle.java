@@ -3,26 +3,35 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Castle {
-	Sprite sprite;
-	Texture texture;
-	float x,y;
-	int hp;
+public class Castle extends Entity{
+	private int hp;
+	private int teamNum;
 	
-	public Castle(float x, float y)
+	public Castle(int x, int y)
 	{
+	    super(x,y);
 		hp = 500;
 		texture = new Texture(Gdx.files.internal("assets/castle.png"));
-		sprite = new Sprite(texture, AIBattle.CHARACTER_SIZE * 2, AIBattle.CHARACTER_SIZE * 2);
-		sprite.setPosition(x, y);
+		sprite = new Sprite(texture, GameController.CHARACTER_SIZE * 2, GameController.CHARACTER_SIZE * 2);
 	}
 
-	public void draw(SpriteBatch batch)
-	{
-		sprite.draw(batch);
-	}
-	
-	public Sprite getCastle() {
-		return sprite;
-	}
+    @Override
+    public int getWidth() {
+        return (int)sprite.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return (int)sprite.getHeight();
+    }
+
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
 }

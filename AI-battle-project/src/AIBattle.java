@@ -19,32 +19,19 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class AIBattle implements ApplicationListener {
-    Texture dropImage;
-    Texture bucketImage;
-    Sound dropSound;
-    Music rainMusic;
+    
+    GameController controller;
     SpriteBatch batch;
     OrthographicCamera camera;
-    Rectangle bucket;
-    Array<Rectangle> raindrops;
-    long lastDropTime;
-    ShapeRenderer shapeRenderer;
-    float x, y = 0;
-    Field field;
-    Team team;
-    static final int CHARACTER_SIZE = 32;
-    Castle castle1, castle2;
-    Swordsman swordsman;
+    
+    
     @Override
     public void create() {
-    	swordsman = new Swordsman(100,100);
+    	controller = new GameController();
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, CHARACTER_SIZE * 30, CHARACTER_SIZE * 20);
+        camera.setToOrtho(false, GameController.CHARACTER_SIZE * 30, GameController.CHARACTER_SIZE * 20);
         batch = new SpriteBatch();
-        shapeRenderer = new ShapeRenderer();
-        field = new Field();
-        team = new Team(20,0);
     }
 
     @Override
@@ -66,13 +53,12 @@ public class AIBattle implements ApplicationListener {
         // begin a new batch and draw the bucket and
         // all drops
         batch.begin();
-        field.draw(batch);
-        swordsman.draw(batch);
-        swordsman.moveForward();
-        team.draw(batch);
+      
+        controller.draw(batch);
+        
         batch.end();
-        x +=1;
-        y +=1;
+        
+        controller.update();
         
     }
 

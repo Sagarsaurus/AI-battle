@@ -5,26 +5,43 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
-abstract class Character{
-        protected int x;
-        protected int y;
+abstract class Character extends Entity{
         boolean LIFE = true;
-        Texture texture;
-        Sprite sprite;
+        int HP;
+        int teamNum;
         
 	public Character(){
-	    this(0,0);
+	    this(0,0,0);
 	}
 	
-	public Character(int x,int y)
+	public Character(int x,int y, int teamNum)
 	{
-	    this.x = x;
-	    this.y = y;
+	    super(x,y);
+	    this.teamNum = teamNum;
+	}
+
+	public int getHP()
+	{
+	    return HP;
 	}
 	
-	public void draw(SpriteBatch batch){
-	    sprite.setPosition(x, y);
-        sprite.draw(batch);
-//stuffsrwer
+	public int getWidth()
+	{
+	    return (int)sprite.getWidth();
 	}
+	
+	public int getHeight()
+    {
+        return (int)sprite.getHeight();
+    }
+	
+	public int getX()
+    {
+        return x;
+    }
+	
+	public int getY()
+    {
+        return y;
+    }
 }
