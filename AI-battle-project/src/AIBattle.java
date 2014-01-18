@@ -44,8 +44,6 @@ public class AIBattle implements ApplicationListener {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         field = new Field();
-        castle1 = new Castle(0,AIBattle.CHARACTER_SIZE * 10);
-        castle2 = new Castle(AIBattle.CHARACTER_SIZE * 30 - 64, AIBattle.CHARACTER_SIZE * 10);
         team = new Team(20,0);
     }
 
@@ -70,8 +68,6 @@ public class AIBattle implements ApplicationListener {
         batch.begin();
         field.draw(batch);
         team.draw(batch);
-        castle1.draw(batch);
-        castle2.draw(batch);
         batch.end();
         x +=1;
         y +=1;

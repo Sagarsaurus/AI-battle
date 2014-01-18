@@ -2,8 +2,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Team {
+    
     Character characters[];
+    Castle castle;
     int size;
+    
     public Team(int numSwordsman, int numArchers)
     {
         size = numSwordsman + numArchers;
@@ -14,6 +17,8 @@ public class Team {
             characters[i] = new Swordsman(0,y);
             y += AIBattle.CHARACTER_SIZE;
         }
+        
+        castle = new Castle(0,AIBattle.CHARACTER_SIZE * 10);
     }
     
     public void draw(SpriteBatch batch)
@@ -22,6 +27,7 @@ public class Team {
         {
             characters[i].draw(batch);
         }
+        castle.draw(batch);
     }
     
     
