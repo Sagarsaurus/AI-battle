@@ -37,7 +37,7 @@ public class AIBattle implements ApplicationListener {
     Swordsman swordsman;
     @Override
     public void create() {
-    	swordsman = new Swordsman();
+    	swordsman = new Swordsman(100,100);
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
         camera.setToOrtho(false, CHARACTER_SIZE * 30, CHARACTER_SIZE * 20);

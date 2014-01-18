@@ -1,16 +1,13 @@
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Swordsman extends Character{
-	protected int x;
-	protected int y;
 	boolean LIFE = true;
-	Texture texture;
 	final static int NUM_CHAR_SPACES = 6;
-	Sprite sprite;
 	int HP;
 	
 	public Swordsman(){
@@ -26,13 +23,6 @@ public class Swordsman extends Character{
 	    HP = 1;
 	}
 	
-
-	public void draw(SpriteBatch batch){
-			
-			sprite.setPosition(100, 100);
-			sprite.draw(batch);
-		}
-	
 	public boolean canMove(int direction){
 		return true;
 	}
@@ -46,11 +36,7 @@ public class Swordsman extends Character{
 	}
 	
 	public void moveForward(){
-		System.out.println("The moveForward method called");
 		
-		x= (x+AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES);
-		y= (y+AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES);
-		
-		System.out.println("X and Y are: " + x + " " + y);
+		y+=AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES * Gdx.graphics.getDeltaTime();
 	}
 }
