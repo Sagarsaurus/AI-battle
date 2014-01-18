@@ -14,6 +14,7 @@ public abstract class Entity {
     public abstract int getX();
     public abstract int getY();
     public void update() {}
+    protected int teamNum;
     
     public Entity(int x, int y)
     {

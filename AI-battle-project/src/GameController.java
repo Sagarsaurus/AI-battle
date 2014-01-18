@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class GameController {
 
     Field field;
-    ArrayList<Entity> entities = new ArrayList<Entity>();
+    static ArrayList<Entity> entities = new ArrayList<Entity>();
     static final int CHARACTER_SIZE = 32;
     int numRock = 20;
     Random rand;
