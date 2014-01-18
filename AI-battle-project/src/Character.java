@@ -25,5 +25,6 @@ abstract class Character{
 	public void draw(SpriteBatch batch){
 	    sprite.setPosition(x, y);
         sprite.draw(batch);
+//stuffs
 	}
 }
