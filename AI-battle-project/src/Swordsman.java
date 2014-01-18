@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Swordsman extends Character{
 	boolean LIFE = true;
-	final static int NUM_CHAR_SPACES = 6;
 	int HP;
 	
 	public Swordsman(){
@@ -33,18 +32,6 @@ public class Swordsman extends Character{
 	
 	public int returnHP(){
 		return HP;
-	}
-	
-	public void moveForward(){		
-		x+=AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES * Gdx.graphics.getDeltaTime();
-	}
-	
-	public float getX() {
-		return x;
-	}
-	
-	public float getY() {
-		return y;
 	}
 	
 	public Sprite getSprite() {

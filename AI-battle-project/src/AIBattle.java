@@ -1,5 +1,7 @@
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -34,10 +36,14 @@ public class AIBattle implements ApplicationListener {
     Team team;
     static final int CHARACTER_SIZE = 32;
     Castle castle1, castle2;
-    Swordsman swordsman;
+    List<Swordsman> swordsmen;
     @Override
     public void create() {
-    	swordsman = new Swordsman(100,100);
+    	swordsmen = new ArrayList<Swordsman>();
+    	for(int i = 0; i < 20; i++) {
+    		swordsmen.get(i).x = 0;
+    		swordsmen.get(i).y = 10 * i;
+    	}
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
         camera.setToOrtho(false, CHARACTER_SIZE * 30, CHARACTER_SIZE * 20);
@@ -67,9 +73,11 @@ public class AIBattle implements ApplicationListener {
         // all drops
         batch.begin();
         field.draw(batch);
-        swordsman.draw(batch);
-        swordsman.moveForward();
-        team.draw(batch);
+        for(Swordsman swordsman:swordsmen) {
+            swordsman.draw(batch);
+            swordsman.moveRight();	
+            team.draw(batch);
+        }
         batch.end();
         x +=1;
         y +=1;
