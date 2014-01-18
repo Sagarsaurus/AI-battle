@@ -11,13 +11,13 @@ public class Swordsman extends Character{
 	int HP;
 	
 	public Swordsman(){
-		this(0,0,0);
+		this(0,0,0, null);
 		
 	}
 	
-	public Swordsman(int x, int y, int teamNum)
+	public Swordsman(int x, int y, int teamNum, CollisionDetection collisionDetection)
 	{
-	    super(x,y, teamNum);
+	    super(x,y, teamNum, collisionDetection);
 	    texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
 	    sprite = new Sprite(texture, 0, 0, GameController.CHARACTER_SIZE, GameController.CHARACTER_SIZE);
 	    HP = 1;
@@ -35,10 +35,6 @@ public class Swordsman extends Character{
 		return HP;
 	}
 	
-	public void moveForward(){		
-		x+=GameController.CHARACTER_SIZE*NUM_CHAR_SPACES * Gdx.graphics.getDeltaTime();
-	}
-
 	public Sprite getSprite() {
 		return sprite;
 	}

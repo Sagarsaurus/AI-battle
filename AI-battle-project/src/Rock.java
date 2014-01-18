@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Rock extends Entity{
-    public Rock(int x, int y)
+    public Rock(int x, int y, CollisionDetection collisionDetection)
     {
-        super(x,y);
+        super(x,y, collisionDetection);
         texture = new Texture(Gdx.files.internal("assets/stone.png"));
         sprite = new Sprite(texture, GameController.CHARACTER_SIZE, GameController.CHARACTER_SIZE);
     }
