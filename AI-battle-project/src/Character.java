@@ -16,7 +16,7 @@ public class Character{
 	Sprite sprite;
 
 	public Character(){
-		texture = new Texture(Gdx.files.internal("swordsman.png"));
+		texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
 		sprite = new Sprite(texture, 0, 0, 32, 64);
 		Random randX = new Random();
 		Random randY = new Random();
