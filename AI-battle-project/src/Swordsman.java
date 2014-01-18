@@ -8,6 +8,7 @@ public class Swordsman extends Character{
 	protected int x;
 	protected int y;
 	boolean LIFE = true;
+<<<<<<< HEAD
 	Texture texture;
 	final static int NUM_CHAR_SPACES = 6;
 	Sprite sprite;
@@ -18,8 +19,17 @@ public class Swordsman extends Character{
 		HP = 1;
 
 		sprite = new Sprite(texture, 0, 0, AIBattle.CHARACTER_SIZE, AIBattle.CHARACTER_SIZE);
+=======
+
+	public Swordsman(int x, int y)
+	{
+	    super(x,y);
+	    texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
+	    sprite = new Sprite(texture, 0, 0, AIBattle.CHARACTER_SIZE, AIBattle.CHARACTER_SIZE);
+>>>>>>> refs/remotes/origin/master
 	}
 	
+<<<<<<< HEAD
 	public void draw(SpriteBatch batch){
 			
 			sprite.setPosition(100, 100);
@@ -28,6 +38,10 @@ public class Swordsman extends Character{
 	
 	public boolean canMove(int direction){
 		return true;
+=======
+	public Swordsman(){
+	    this(0,0);
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	public boolean isDead(int hp){

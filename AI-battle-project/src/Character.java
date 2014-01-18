@@ -8,23 +8,22 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 abstract class Character{
         protected int x;
         protected int y;
-        int yChange;
         boolean LIFE = true;
         Texture texture;
         Sprite sprite;
-
-        public Character(){
-            this(0,0);
-        }
         
-        public Character(int x,int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-        
-        public void draw(SpriteBatch batch){
-            sprite.setPosition(x, y);
+	public Character(){
+	    this(0,0);
+	}
+	
+	public Character(int x,int y)
+	{
+	    this.x = x;
+	    this.y = y;
+	}
+	
+	public void draw(SpriteBatch batch){
+	    sprite.setPosition(x, y);
         sprite.draw(batch);
-        }
+	}
 }
