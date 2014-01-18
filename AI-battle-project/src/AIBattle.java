@@ -31,23 +31,23 @@ public class AIBattle implements ApplicationListener {
     ShapeRenderer shapeRenderer;
     float x, y = 0;
     Field field;
+    Team team;
     static final int CHARACTER_SIZE = 32;
     Castle castle1, castle2;
     
-    Swordsman swordsman;
-
     @Override
     public void create() {
-    	swordsman = new Swordsman();
+    	
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, CHARACTER_SIZE * 30, CHARACTER_SIZE * 20);
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         field = new Field();
         castle1 = new Castle(0,240);
         //800 - 64 needs to be better coded
         castle2 = new Castle(800-64, 240);
+        team = new Team(20,0);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class AIBattle implements ApplicationListener {
         // all drops
         batch.begin();
         field.draw(batch);
-        swordsman.draw(batch);
+        team.draw(batch);
         castle1.draw(batch);
         castle2.draw(batch);
         batch.end();

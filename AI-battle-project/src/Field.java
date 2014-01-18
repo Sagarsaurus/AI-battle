@@ -19,10 +19,10 @@ public class Field
     	x = 0;
     	y = 0;
     	
-    	while(y < 480)
+    	while(y < AIBattle.CHARACTER_SIZE * 20)
     	{
     		x = 0;
-    		while(x < 800)
+    		while(x < AIBattle.CHARACTER_SIZE * 30)
     		{
     			sprite.setPosition(x, y);
         		sprite.draw(batch);
