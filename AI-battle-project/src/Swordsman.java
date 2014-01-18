@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Swordsman extends Character{
+	protected int x;
+	protected int y;
 	boolean LIFE = true;
 	Texture texture;
 	final static int NUM_CHAR_SPACES = 6;
@@ -38,14 +40,10 @@ public class Swordsman extends Character{
 	
 	public void moveForward(){
 		System.out.println("The moveForward method called");
-		float x = sprite.getX();
-		float y = sprite.getY();
 		
 		x= (x+AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES);
 		y= (y+AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES);
 		
 		System.out.println("X and Y are: " + x + " " + y);
-		
-		sprite.setPosition(x,y);
 	}
 }

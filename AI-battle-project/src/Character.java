@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -5,13 +6,25 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 abstract class Character{
-	Texture texture;
-	Sprite sprite;
-	int HP;
+        protected int x;
+        protected int y;
+        int yChange;
+        boolean LIFE = true;
+        Texture texture;
+        Sprite sprite;
 
-	public Character(){
-	}
-	
-	public void draw(SpriteBatch batch){
-	}
+        public Character(){
+            this(0,0);
+        }
+        
+        public Character(int x,int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+        
+        public void draw(SpriteBatch batch){
+            sprite.setPosition(x, y);
+        sprite.draw(batch);
+        }
 }
