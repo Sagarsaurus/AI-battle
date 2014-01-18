@@ -35,8 +35,7 @@ public class Swordsman extends Character{
 		return HP;
 	}
 	
-	public void moveForward(){
-		
-		y+=AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES * Gdx.graphics.getDeltaTime();
+	public void moveForward(){		
+		x+=AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES * Gdx.graphics.getDeltaTime();
 	}
 }
