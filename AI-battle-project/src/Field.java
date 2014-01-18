@@ -12,7 +12,7 @@ public class Field
 	public Field()
 	{
 		texture = new Texture(Gdx.files.internal("assets/grass.png"));
-		sprite = new Sprite(texture,20,20);
+		sprite = new Sprite(texture, AIBattle.CHARACTER_SIZE, AIBattle.CHARACTER_SIZE);
 	}
     public void draw(SpriteBatch batch)
     {

@@ -7,13 +7,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Swordsman extends Character{
 	boolean LIFE = true;
 	Texture texture;
+	final static int NUM_CHAR_SPACES = 6;
 	Sprite sprite;
 	int HP;
 	
 	public Swordsman(){
 		texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
-		sprite = new Sprite(texture, 0, 0, 32, 32);
 		HP = 1;
+
+		sprite = new Sprite(texture, 0, 0, AIBattle.CHARACTER_SIZE, AIBattle.CHARACTER_SIZE);
 	}
 	
 	public void draw(SpriteBatch batch){
@@ -30,13 +32,20 @@ public class Swordsman extends Character{
 		return HP==0;
 	}
 	
-	public int returnHP(int isStruck){
-		if (isStruck==1){
-			HP-=1;
-			if (HP==1){
-				sprite.setColor(1,0,0,0);
-			}
-		}
+	public int returnHP(){
 		return HP;
+	}
+	
+	public void moveForward(){
+		System.out.println("The moveForward method called");
+		float x = sprite.getX();
+		float y = sprite.getY();
+		
+		x= (x+AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES);
+		y= (y+AIBattle.CHARACTER_SIZE*NUM_CHAR_SPACES);
+		
+		System.out.println("X and Y are: " + x + " " + y);
+		
+		sprite.setPosition(x,y);
 	}
 }
