@@ -10,13 +10,15 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class Test implements ApplicationListener {
+public class AIBattle implements ApplicationListener {
     Texture dropImage;
     Texture bucketImage;
     Sound dropSound;
@@ -26,6 +28,8 @@ public class Test implements ApplicationListener {
     Rectangle bucket;
     Array<Rectangle> raindrops;
     long lastDropTime;
+    ShapeRenderer shapeRenderer;
+    float x, y = 0;
 
     @Override
     public void create() {
@@ -34,6 +38,7 @@ public class Test implements ApplicationListener {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
         batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
     }
 
     @Override
@@ -55,8 +60,13 @@ public class Test implements ApplicationListener {
         // begin a new batch and draw the bucket and
         // all drops
         batch.begin();
-
+        shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.circle(x,y, 100);
+        shapeRenderer.end();
         batch.end();
+        x +=1;
+        y +=1;
+        
     }
 
     @Override

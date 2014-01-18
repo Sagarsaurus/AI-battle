@@ -5,9 +5,9 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 public class Main {
    public static void main(String[] args) {
       LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-      cfg.title = "Drop";
+      cfg.title = "AI Battle";
       cfg.width = 800;
       cfg.height = 480;
-      new LwjglApplication(new Test(), cfg);
+      new LwjglApplication(new AIBattle(), cfg);
    }
 }
