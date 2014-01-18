@@ -21,4 +21,8 @@ public class Castle {
 	{
 		sprite.draw(batch);
 	}
+	
+	public Sprite getCastle() {
+		return sprite;
+	}
 }

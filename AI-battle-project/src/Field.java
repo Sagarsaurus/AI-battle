@@ -55,4 +55,8 @@ public class Field
     		rockSpirtes[i].draw(batch);
     	}
     }
+    
+    public Sprite[] getRocks() {
+    	return rockSpirtes;    	
+    }
 }
