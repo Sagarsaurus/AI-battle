@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Swordsman extends Character{
 	boolean LIFE = true;
 	final static int NUM_CHAR_SPACES = 6;
-	
+	int HP;
 	
 	public Swordsman(){
 		this(0,0,0);

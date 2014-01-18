@@ -1,5 +1,7 @@
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -23,11 +25,11 @@ public class AIBattle implements ApplicationListener {
     GameController controller;
     SpriteBatch batch;
     OrthographicCamera camera;
-    
-    
+
     @Override
     public void create() {
     	controller = new GameController();
+
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GameController.CHARACTER_SIZE * 30, GameController.CHARACTER_SIZE * 20);
@@ -53,9 +55,10 @@ public class AIBattle implements ApplicationListener {
         // begin a new batch and draw the bucket and
         // all drops
         batch.begin();
+
       
         controller.draw(batch);
-        
+
         batch.end();
         
         controller.update();

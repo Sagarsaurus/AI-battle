@@ -9,6 +9,7 @@ abstract class Character extends Entity{
         boolean LIFE = true;
         int HP;
         int teamNum;
+
         
 	public Character(){
 	    this(0,0,0);
