@@ -30,6 +30,7 @@ public class AIBattle implements ApplicationListener {
     long lastDropTime;
     ShapeRenderer shapeRenderer;
     float x, y = 0;
+    Field field;
 
     @Override
     public void create() {
@@ -39,6 +40,7 @@ public class AIBattle implements ApplicationListener {
         camera.setToOrtho(false, 800, 480);
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
+        field = new Field();
     }
 
     @Override
@@ -60,9 +62,7 @@ public class AIBattle implements ApplicationListener {
         // begin a new batch and draw the bucket and
         // all drops
         batch.begin();
-        shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.circle(x,y, 100);
-        shapeRenderer.end();
+        field.draw(batch);
         batch.end();
         x +=1;
         y +=1;
