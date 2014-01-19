@@ -41,7 +41,7 @@ public class Archer extends Character {
 	    return currentAttackSpeed >= attackSpeed;
 	}
 	
-	public void shoot(int targetX, int targetY) {
+	public void shoot(float targetX, float targetY) {
 	    if(canShoot())
 	    {
 	        float deltaX = (targetX-getX());

@@ -52,12 +52,12 @@ abstract class Character extends Entity {
         return (int)sprite.getHeight();
     }
 	
-	public int getX()
+	public float getX()
     {
         return x;
     }
 	
-	public int getY()
+	public float getY()
     {
         return y;
     }
@@ -238,26 +238,26 @@ abstract class Character extends Entity {
 	
 	public HashMap<String,ArrayList<Coordinates>> getView(){
 	    HashMap<String, ArrayList<Coordinates>> fieldValues = new HashMap<String, ArrayList<Coordinates>>();
-		int x = this.x;
-		int y = this.y;
+		float x = this.x;
+		float y = this.y;
 		
-		int viewTopX = 0;
-        int viewTopY = 0;
+		double viewTopX = 0;
+        double viewTopY = 0;
         
         if(facing == Direction.RIGHT)
         {
-            viewTopX = x - (int)(GameController.CHARACTER_SIZE * backView + 0.5);
-            viewTopY = y + (int)(GameController.CHARACTER_SIZE * sideView + 0.5);
+            viewTopX = x - (GameController.CHARACTER_SIZE * backView + 0.5);
+            viewTopY = y + (GameController.CHARACTER_SIZE * sideView + 0.5);
         }
         else
         {
-            viewTopX = (int)(x - GameController.CHARACTER_SIZE * frontView + 0.5);
-            viewTopY = (int)(y + GameController.CHARACTER_SIZE * sideView + 0.5); 
+            viewTopX = (x - GameController.CHARACTER_SIZE * frontView + 0.5);
+            viewTopY = (y + GameController.CHARACTER_SIZE * sideView + 0.5); 
         }
         
 		for(Entity each: GameController.entities){
-			int eachX = each.getX();
-			int eachY = each.getY();
+			float eachX = each.getX();
+			float eachY = each.getY();
 			
 			
 			if(eachY < viewTopY && eachY > viewTopY - GameController.CHARACTER_SIZE*5){

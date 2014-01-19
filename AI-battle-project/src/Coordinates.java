@@ -1,19 +1,19 @@
 
 public class Coordinates {
-	private int x;
-	private int y;
+	private float x;
+	private float y;
 	
-	public Coordinates(int x, int y){
+	public Coordinates(float x, float y){
 		this.x = x;
 		this.y = y;
 	}
 	
-	public int getX()
+	public float getX()
 	{
 	    return x;
 	}
 	
-	public int getY()
+	public float getY()
 	{
 	    return y;
 	}

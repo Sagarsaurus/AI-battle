@@ -8,8 +8,8 @@ public abstract class Entity {
     
     protected Texture texture;
     protected Sprite sprite;
-    protected int x;
-    protected int y;
+    protected float x;
+    protected float y;
     protected int hp;
     protected Direction facing;
     int teamNum;
@@ -17,12 +17,12 @@ public abstract class Entity {
     protected CollisionDetection collisionDetection;
     public abstract int getWidth();
     public abstract int getHeight();
-    public abstract int getX();
-    public abstract int getY();
+    public abstract float getX();
+    public abstract float getY();
     public abstract String getType(int perspectiveTeam);
 
     
-    public Entity(int x, int y, CollisionDetection collisionDetection)
+    public Entity(float x, float y, CollisionDetection collisionDetection)
     {
         teamNum = -1;
         this.x = x;
@@ -32,22 +32,22 @@ public abstract class Entity {
         hp = 1;
     }
     
-    public int getLeftEdge()
+    public float getLeftEdge()
     {
         return getX() - getWidth() / 2;
     }
     
-    public int getRightEdge()
+    public float getRightEdge()
     {
         return getX() + getWidth() / 2;
     }
     
-    public int getTopEdge()
+    public float getTopEdge()
     {
         return getY() + getHeight() / 2;
     }
     
-    public int getBottomEdge()
+    public float getBottomEdge()
     {
         return getY() - getHeight() / 2;
     }

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Arrow extends Entity{
 	float deltaX, deltaY;
-	public Arrow(int x, int y, int teamNum, CollisionDetection collisionDetection, Class aiClass, double rotation)
+	public Arrow(float x, float y, int teamNum, CollisionDetection collisionDetection, Class aiClass, double rotation)
 	{
 	    super(x,y, collisionDetection);
 	    texture = new Texture(Gdx.files.internal("assets/arrow.png"));
@@ -28,13 +28,13 @@ public class Arrow extends Entity{
 	}
 
 	@Override
-	public int getX() {
+	public float getX() {
 		// TODO Auto-generated method stub
 		return this.x;
 	}
 
 	@Override
-	public int getY() {
+	public float getY() {
 		// TODO Auto-generated method stub
 		return this.y;
 	}

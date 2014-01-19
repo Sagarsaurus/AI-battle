@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Castle extends Entity{
 	
-	public Castle(int x, int y, CollisionDetection collisionDetection, int teamNum)
+	public Castle(float x, float y, CollisionDetection collisionDetection, int teamNum)
 	{
 	    super(x,y, collisionDetection);
 	    this.teamNum = teamNum;
@@ -25,12 +25,12 @@ public class Castle extends Entity{
     }
 
     @Override
-    public int getX() {
+    public float getX() {
         return x;
     }
 
     @Override
-    public int getY() {
+    public float getY() {
         return y;
     }
     

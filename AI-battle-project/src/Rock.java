@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Rock extends Entity{
-    public Rock(int x, int y, CollisionDetection collisionDetection)
+    public Rock(float x, float y, CollisionDetection collisionDetection)
     {
         super(x,y, collisionDetection);
         texture = new Texture(Gdx.files.internal("assets/stone.png"));
@@ -23,12 +23,12 @@ public class Rock extends Entity{
     }
 
     @Override
-    public int getX() {
+    public float getX() {
         return x;
     }
 
     @Override
-    public int getY() {
+    public float getY() {
         return y;
     }
     
