@@ -16,6 +16,8 @@ public abstract class Entity {
     public abstract int getHeight();
     public abstract int getX();
     public abstract int getY();
+    public abstract String getType(int perspectiveTeam);
+
     
     public Entity(int x, int y, CollisionDetection collisionDetection)
     {

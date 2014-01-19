@@ -31,4 +31,9 @@ public class Rock extends Entity{
     public int getY() {
         return y;
     }
+    
+    public String getType(int perspectiveTeam)
+    {
+        return "R";
+    }
 }

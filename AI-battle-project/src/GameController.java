@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class GameController {
 
     Field field;
-    ArrayList<Entity> entities = new ArrayList<Entity>();
+    static ArrayList<Entity> entities = new ArrayList<Entity>();
     static final int CHARACTER_SIZE = 32;
     int numRock = 0;
     Random rand;
@@ -32,11 +32,11 @@ public class GameController {
         if(teamNum == 1)
         {
             x = (int)((double)CHARACTER_SIZE * 29.5);
-            entities.add(new Castle(x - CHARACTER_SIZE / 2, GameController.CHARACTER_SIZE * 10, collisionDetection));
+            entities.add(new Castle(x - CHARACTER_SIZE / 2, GameController.CHARACTER_SIZE * 10, collisionDetection , teamNum));
         }
         else
         {
-            entities.add(new Castle(CHARACTER_SIZE, GameController.CHARACTER_SIZE * 10, collisionDetection));
+            entities.add(new Castle(CHARACTER_SIZE, GameController.CHARACTER_SIZE * 10, collisionDetection , teamNum));
         }
         
         for(int i = 0; i < numSwordsman; i++)

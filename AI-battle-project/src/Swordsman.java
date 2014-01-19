@@ -38,4 +38,16 @@ public class Swordsman extends Character{
 	public Sprite getSprite() {
 		return sprite;
 	}
+	
+	public String getType(int perspectiveTeam) 
+    {
+        if(perspectiveTeam == teamNum)
+        {
+            return "FS";
+        }
+        else
+        {
+            return "ES";
+        }
+    }
 }
