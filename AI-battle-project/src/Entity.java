@@ -1,3 +1,4 @@
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -75,4 +76,17 @@ public abstract class Entity {
             sprite.draw(batch);
         }
     }
+    
+    public void switchImageFirst() {
+    	sprite.setTexture(new Texture(Gdx.files.internal("assets/archer1.png")));
+    }
+    
+    public void switchImageSecond() {
+    	sprite.setTexture(new Texture(Gdx.files.internal("assets/archer2.png")));
+    }
+    
+    public void switchImageThird() {
+    	sprite.setTexture(new Texture(Gdx.files.internal("assets/archer.png")));
+    }
+    
 }

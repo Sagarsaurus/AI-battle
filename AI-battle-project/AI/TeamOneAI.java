@@ -23,6 +23,7 @@ public class TeamOneAI {
     }
     
     public static void archerAI(Archer a) {
-    	
+    	System.out.println("got here");
+    	a.archerAttack();
     }
 }

@@ -98,6 +98,12 @@ abstract class Character extends Entity {
 	    return false;
 	    
 	}
+	
+	public void archerAttack() {
+		Arrow a = new Arrow(this.x, this.y, this.teamNum, collisionDetection, aiClass);
+		GameController.entities.add(a);
+	}
+	
 	public boolean canMove(Direction direction)
 	{
 	    if(direction == Direction.FORWARD)

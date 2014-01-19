@@ -7,6 +7,6 @@ public class TeamZeroAI {
     }
     
     public static void archerAI(Archer a) {
-    	
+    	a.archerAttack();
     }
 }
