@@ -14,6 +14,8 @@ abstract class Character extends Entity {
     boolean LIFE = true;
     
     int attackStength = 1;
+    protected double attackSpeed = 0;
+    protected double currentAttackSpeed = 0;
     protected int frontView = 0;
     protected int backView = 0;
     protected int sideView = 0;
@@ -92,10 +94,10 @@ abstract class Character extends Entity {
         }
         
         
-	    if(entity != null && entity.teamNum != -1 && entity.teamNum != this.teamNum)
+	    if(entity != null && entity.teamNum != -1 && entity.teamNum != this.teamNum && currentAttackSpeed >= attackSpeed)
 	    {
 	        entity.hp -= this.attackStength;
-	        
+	        attackSpeed = 0;
 	        return true;
 	    }
 	    return false;
@@ -142,25 +144,25 @@ abstract class Character extends Entity {
         {
             if(facing == Direction.RIGHT)
             {
-                return collisionDetection.collisionAt(this, Direction.RIGHT) != null;
+                return collisionDetection.collisionAt(this, Direction.RIGHT) != null && currentAttackSpeed >= attackSpeed;
             }
             else
             {
-                return collisionDetection.collisionAt(this, Direction.LEFT) != null;
+                return collisionDetection.collisionAt(this, Direction.LEFT) != null && currentAttackSpeed >= attackSpeed;
             }
         }
         else if(direction == Direction.BACKWARD)
         {
             if(facing == Direction.LEFT)
             {
-                return collisionDetection.collisionAt(this, Direction.RIGHT) != null;
+                return collisionDetection.collisionAt(this, Direction.RIGHT) != null && currentAttackSpeed >= attackSpeed;
             }
             else
             {
-                return collisionDetection.collisionAt(this, Direction.LEFT) != null;
+                return collisionDetection.collisionAt(this, Direction.LEFT) != null && currentAttackSpeed >= attackSpeed;
             }
         }
-        return collisionDetection.collisionAt(this, direction) != null;
+        return collisionDetection.collisionAt(this, direction) != null && currentAttackSpeed >= attackSpeed;
     }
 	
 	public void moveUp()
@@ -226,6 +228,10 @@ abstract class Character extends Entity {
 	
 	public void update()
 	{
+	    if(currentAttackSpeed <= attackSpeed)
+	    {
+	        currentAttackSpeed += Gdx.graphics.getDeltaTime();
+	    }
 	}
 	
 	public abstract String getType(int perspectiveTeam);

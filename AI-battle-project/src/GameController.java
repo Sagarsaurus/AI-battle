@@ -12,6 +12,7 @@ public class GameController {
     int numRock = 0;
     Random rand;
     CollisionDetection collisionDetection;
+    boolean isOver = false;
     
     Class teamZeroAI;
     Class teamOneAI;
@@ -27,8 +28,8 @@ public class GameController {
             entities.add(new Rock(GameController.CHARACTER_SIZE * 2 + rand.nextInt(800 - GameController.CHARACTER_SIZE * 4),rand.nextInt(480-GameController.CHARACTER_SIZE), collisionDetection));
         }
 
-        createTeam(5,10,0);
-        createTeam(5,10,1);
+        createTeam(10,10,0);
+        createTeam(10,10,1);
 
     }
 
@@ -48,16 +49,11 @@ public class GameController {
     {
         int x = CHARACTER_SIZE / 2;
         
-        int newX = 0;
-        int yInc = CHARACTER_SIZE * 18 / (numSwordsman + numArchers);
+        int yIncArchers = CHARACTER_SIZE * 18 / numArchers;
+        int yIncSwordsman = CHARACTER_SIZE * 18 / numSwordsman;
         int newY = CHARACTER_SIZE;
-        int maxX = CHARACTER_SIZE * 10;
-        int minX = CHARACTER_SIZE * 3;
-        
-        int charX[] = new int[numSwordsman + numArchers];
-        int charY[] = new int[numSwordsman + numArchers];
-        int currentCharacter = -1;
-        boolean foundLocation = true;
+        int newXSwordsman = CHARACTER_SIZE * 5;
+        int newXArcher = CHARACTER_SIZE * 3;
         
         Class teamAI = null;
         
@@ -65,8 +61,8 @@ public class GameController {
         {
             teamAI = teamOneAI;
             x = (int)((double)CHARACTER_SIZE * 29.5);
-            maxX = CHARACTER_SIZE * 27;
-            minX = CHARACTER_SIZE * 20;
+            newXSwordsman = CHARACTER_SIZE * 25;
+            newXArcher = CHARACTER_SIZE * 27;
             entities.add(new Castle(x - CHARACTER_SIZE / 2, GameController.CHARACTER_SIZE * 10, collisionDetection , teamNum));
         }
         else
@@ -77,15 +73,14 @@ public class GameController {
         
         for(int i = 0; i < numSwordsman; i++)
         {
-            newX = rand.nextInt(maxX - minX) + minX;
-            entities.add(new Swordsman(newX,newY, teamNum, collisionDetection, teamAI));
-            newY += yInc;
+            entities.add(new Swordsman(newXSwordsman,newY, teamNum, collisionDetection, teamAI));
+            newY += yIncSwordsman;
         }
+        newY = CHARACTER_SIZE;
         
         for(int i = 0; i < numArchers; i++) {
-            newX = rand.nextInt(maxX - minX) + minX;
-            entities.add(new Archer(newX,newY, teamNum, collisionDetection, teamAI));
-            newY += yInc;
+            entities.add(new Archer(newXArcher,newY, teamNum, collisionDetection, teamAI));
+            newY += yIncArchers;
         }
 
     }
@@ -99,9 +94,15 @@ public class GameController {
 	            entities.get(i).update();
 	            if(entities.get(i).isGone())
 	            {
+	                String type = entities.get(i).getType(0);
+	                if(type.equals("FC") || type.equals("EC"))
+	                {
+	                    System.exit(0);
+	                }
 	                entities.remove(entities.get(i));
 	                i--;
 	            }
+	            
         }  
 	}
 	

@@ -54,7 +54,11 @@ public abstract class Entity {
     
     public boolean isGone()
     {
-        return hp <= 0;
+        return hp <= 0 || 
+               getRightEdge() > GameController.CHARACTER_SIZE * 31 || 
+               getLeftEdge() < -GameController.CHARACTER_SIZE ||
+               getTopEdge() > GameController.CHARACTER_SIZE * 21 ||
+               getBottomEdge() < -GameController.CHARACTER_SIZE;
     }
     public void update() {}
     

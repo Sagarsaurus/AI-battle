@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Archer extends Character {
 	
-    int shootTime;
-    int currentShootTime;
 	public Archer(){
 		this(0,0,0, null, null);
 	}
@@ -19,12 +17,11 @@ public class Archer extends Character {
 		texture = new Texture(Gdx.files.internal("assets/archer.png"));
 		sprite = new Sprite(texture, 0, 0, GameController.CHARACTER_SIZE, GameController.CHARACTER_SIZE);
 	    hp = 2;
-	    shootTime = 100;
-        currentShootTime = 0;
-        hp = 2;
         sideView = 4;
         backView = 3;
         frontView = 15;
+        attackSpeed = 5;
+        currentAttackSpeed = 5;
 	}
 
 	@Override
@@ -39,12 +36,13 @@ public class Archer extends Character {
 	        }
 	}
 	
-	public void canShoot()
+	public boolean canShoot()
 	{
-	    
+	    return currentAttackSpeed >= attackSpeed;
 	}
+	
 	public void shoot(int targetX, int targetY) {
-	    if(currentShootTime >= shootTime)
+	    if(canShoot())
 	    {
 	        float deltaX = (targetX-getX());
             float deltaY = (targetY-getY());
@@ -58,17 +56,14 @@ public class Archer extends Character {
             a.deltaX = deltaX;
             a.deltaY = deltaY;
             GameController.entities.add(a);
-            currentShootTime = 0;
+            currentAttackSpeed = 0;
 	    }
         
     }
 	
 	public void update()
 	{
-	    if(currentShootTime < shootTime)
-	    {
-	        currentShootTime++;
-	    }
+	    super.update();
 	    try {
 	        
             aiClass.getMethod("archerAI", Archer.class).invoke(null, this);

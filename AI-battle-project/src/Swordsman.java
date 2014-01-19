@@ -25,6 +25,7 @@ public class Swordsman extends Character{
 	    sideView = 2;
 	    backView = 1;
 	    frontView = 4;
+	    attackSpeed = 0.25;
 	}
 	
 	public boolean canMove(int direction){
@@ -50,6 +51,7 @@ public class Swordsman extends Character{
 	
 	public void update()
 	{
+	    super.update();
 	    try {
 	        
             aiClass.getMethod("swordsmanAI", Swordsman.class).invoke(null, this);

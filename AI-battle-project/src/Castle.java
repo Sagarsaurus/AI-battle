@@ -9,7 +9,7 @@ public class Castle extends Entity{
 	{
 	    super(x,y, collisionDetection);
 	    this.teamNum = teamNum;
-		hp = 5;
+		hp = 100;
 		texture = new Texture(Gdx.files.internal("assets/castle.png"));
 		sprite = new Sprite(texture, GameController.CHARACTER_SIZE * 2, GameController.CHARACTER_SIZE * 2);
 	}
