@@ -26,8 +26,8 @@ public class GameController {
         {
             entities.add(new Rock(GameController.CHARACTER_SIZE * 2 + rand.nextInt(800 - GameController.CHARACTER_SIZE * 4),rand.nextInt(480-GameController.CHARACTER_SIZE), collisionDetection));
         }
-        createTeam(10,0,0);
-        createTeam(10,0,1);
+        createTeam(5,0,0);
+        createTeam(5,0,1);
     }
 
     public void loadAIClasses()
@@ -45,13 +45,26 @@ public class GameController {
     public void createTeam(int numSwordsman, int numArchers, int teamNum)
     {
         int x = CHARACTER_SIZE / 2;
-        int y = CHARACTER_SIZE / 2;
+        
+        int newX = 0;
+        int yInc = CHARACTER_SIZE * 18 / (numSwordsman + numArchers);
+        int newY = CHARACTER_SIZE;
+        int maxX = CHARACTER_SIZE * 10;
+        int minX = CHARACTER_SIZE * 3;
+        
+        int charX[] = new int[numSwordsman + numArchers];
+        int charY[] = new int[numSwordsman + numArchers];
+        int currentCharacter = -1;
+        boolean foundLocation = true;
+        
         Class teamAI = null;
         
         if(teamNum == 1)
         {
             teamAI = teamOneAI;
             x = (int)((double)CHARACTER_SIZE * 29.5);
+            maxX = CHARACTER_SIZE * 27;
+            minX = CHARACTER_SIZE * 20;
             entities.add(new Castle(x - CHARACTER_SIZE / 2, GameController.CHARACTER_SIZE * 10, collisionDetection , teamNum));
         }
         else
@@ -62,13 +75,16 @@ public class GameController {
         
         for(int i = 0; i < numSwordsman; i++)
         {
-            entities.add(new Swordsman(x,y, teamNum, collisionDetection, teamAI));
-            y += GameController.CHARACTER_SIZE + 5;
+            newX = rand.nextInt(maxX - minX) + minX;
+            entities.add(new Swordsman(newX,newY, teamNum, collisionDetection, teamAI));
+            newY += yInc;
         }
         
-              
+        
     }
 
+    
+    
 	public void update()
 	{
 	    for(int i = 0; i < entities.size(); i++)
