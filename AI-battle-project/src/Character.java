@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
@@ -102,6 +103,15 @@ abstract class Character extends Entity {
 	public void archerAttack() {
 		Arrow a = new Arrow(this.x, this.y, this.teamNum, collisionDetection, aiClass);
 		GameController.entities.add(a);
+		Random rand = new Random();
+		int index = rand.nextInt(GameController.entities.size());
+		while(GameController.entities.get(index).teamNum==this.teamNum) {
+			index = rand.nextInt(GameController.entities.size());
+		}
+		Entity target = GameController.entities.get(index);
+		a.deltaX = (target.getX()-a.getX())/10;
+		a.deltaY = (target.getY()-a.getY())/10;
+		
 	}
 	
 	public boolean canMove(Direction direction)

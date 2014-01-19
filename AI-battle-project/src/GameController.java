@@ -26,8 +26,10 @@ public class GameController {
         {
             entities.add(new Rock(GameController.CHARACTER_SIZE * 2 + rand.nextInt(800 - GameController.CHARACTER_SIZE * 4),rand.nextInt(480-GameController.CHARACTER_SIZE), collisionDetection));
         }
-        createTeam(10,0,0);
-        createTeam(10,0,1);
+
+        createTeam(5,4,0);
+        createTeam(5,4,1);
+
     }
 
     public void loadAIClasses()
@@ -108,7 +110,6 @@ public class GameController {
 	    field.draw(batch);
 	    for(Entity entity: entities)
 	    {
-	        
 	        entity.draw(batch);
 	    }
 	}

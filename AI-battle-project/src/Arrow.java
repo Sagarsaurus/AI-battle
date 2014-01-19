@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 
 public class Arrow extends Entity{
+	int deltaX, deltaY;
 	public Arrow(int x, int y, int teamNum, CollisionDetection collisionDetection, Class aiClass)
 	{
 	    super(x,y, collisionDetection);
@@ -15,30 +16,40 @@ public class Arrow extends Entity{
 	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 16;
 	}
 
 	@Override
 	public int getHeight() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 16;
 	}
 
 	@Override
 	public int getX() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.x;
 	}
 
 	@Override
 	public int getY() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.y;
 	}
 
 	@Override
 	public String getType(int perspectiveTeam) {
 		// TODO Auto-generated method stub
-		return null;
+		if(this.teamNum==perspectiveTeam) {;
+			return "FArrow";
+		}
+		
+		return "EArrow";
+	}
+	
+	@Override
+	public void update() {
+		this.x += (int) (16*deltaX * Gdx.graphics.getDeltaTime());
+		this.y += (int) (16*deltaY * Gdx.graphics.getDeltaTime());
 	}
 }
