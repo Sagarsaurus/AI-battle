@@ -21,8 +21,8 @@ public class GameController {
         {
             entities.add(new Rock(GameController.CHARACTER_SIZE * 2 + rand.nextInt(800 - GameController.CHARACTER_SIZE * 4),rand.nextInt(480-GameController.CHARACTER_SIZE), collisionDetection));
         }
-        createTeam(20,0,0);
-        createTeam(20,0,1);
+        createTeam(2,0,0);
+        createTeam(2,0,1);
     }
 
     public void createTeam(int numSwordsman, int numArchers, int teamNum)

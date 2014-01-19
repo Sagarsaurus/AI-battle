@@ -1,18 +1,19 @@
 import java.awt.Graphics;
 import java.util.HashMap;
-
+import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 
 abstract class Character extends Entity{
         boolean LIFE = true;
         int HP;
         int teamNum;
-        HashMap<String, ArrayList<Coordinates>> fieldValues;
+        
         ArrayList<Coordinates> coordinates;
         
 	public Character(){
@@ -61,7 +62,7 @@ abstract class Character extends Entity{
 
 	public boolean canMove(Direction direction)
 	{
-	    return collisionDetection.collisionAt(this, direction) != null;
+	    return collisionDetection.collisionAt(this, direction) == null;
 	}
 	
 	public boolean canAttack(Direction direction)
@@ -71,7 +72,7 @@ abstract class Character extends Entity{
 	
 	public void moveUp()
     {
-        if((collisionDetection.collisionAt(this, Direction.UP) != null))
+        if((collisionDetection.collisionAt(this, Direction.UP) == null))
         {
             y += GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
@@ -79,7 +80,7 @@ abstract class Character extends Entity{
 	
 	public void moveDown()
     {
-        if(collisionDetection.collisionAt(this, Direction.DOWN) != null)
+        if(collisionDetection.collisionAt(this, Direction.DOWN) == null)
         {
             y -= GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
@@ -87,14 +88,14 @@ abstract class Character extends Entity{
 	
 	private void moveLeft()
     {
-        if(collisionDetection.collisionAt(this, Direction.LEFT) != null)
+        if(collisionDetection.collisionAt(this, Direction.LEFT) == null)
         {
             x -= GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
     }
 	private void moveRight()
     {
-        if(collisionDetection.collisionAt(this, Direction.RIGHT) != null)
+        if(collisionDetection.collisionAt(this, Direction.RIGHT) == null)
         {
             x += GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
@@ -129,26 +130,45 @@ abstract class Character extends Entity{
 	public void update()
 	{
 	    moveForward();
+	    getView();
 	}
 	
 	public abstract String getType(int perspectiveTeam);
 	
 	public HashMap<String,ArrayList<Coordinates>> getView(){
+	    HashMap<String, ArrayList<Coordinates>> fieldValues = new HashMap<String, ArrayList<Coordinates>>();
 		int x = this.x;
 		int y = this.y;
+		
+		int viewTopX = 0;
+        int viewTopY = 0;
+        
+        if(facing == Direction.RIGHT)
+        {
+            viewTopX = x - (int)(GameController.CHARACTER_SIZE*1.5);
+            viewTopY = y + (int)(GameController.CHARACTER_SIZE*2.5);
+        }
+        else
+        {
+            viewTopX = (int)(x - GameController.CHARACTER_SIZE*4.5);
+            viewTopY = (int)(y + GameController.CHARACTER_SIZE*2.5); 
+        }
+        
 		for(Entity each: GameController.entities){
 			int eachX = each.getX();
 			int eachY = each.getY();
 			
-			if(eachY<y+GameController.CHARACTER_SIZE*2|y>eachY+GameController.CHARACTER_SIZE*2){	
-				if (eachX<=x+GameController.CHARACTER_SIZE*4|x>eachX+GameController.CHARACTER_SIZE){
+			
+			if(eachY < viewTopY && eachY > viewTopY - GameController.CHARACTER_SIZE*5){
+				if (eachX > viewTopX && eachX < viewTopX + GameController.CHARACTER_SIZE*6){
 					String sample = each.toString();
 					String assign = determineAssignment(sample, each);	
 					
 					if(!fieldValues.containsKey(assign)){
 						
-				        Coordinates coord = new Coordinates(eachX,eachY);						
-				        fieldValues.put(assign,new ArrayList<Coordinates>());
+				        ArrayList<Coordinates> temp = new ArrayList<Coordinates>();
+				        temp.add(new Coordinates(eachX,eachY));
+				        fieldValues.put(assign,temp);
 					}
 					else{
 						coordinates = fieldValues.get(assign);
@@ -160,6 +180,19 @@ abstract class Character extends Entity{
 			}
 			
 		}
+	/**	Set keyset = fieldValues.keySet();
+		System.out.println("View");
+		for(Object str: keyset)
+		{
+		    ArrayList<Coordinates> temp = fieldValues.get(str);
+		    
+		    for(Coordinates cords: temp)
+		    {
+		        
+		        System.out.println(str + " x:" + cords.getX() + " y:" + cords.getY());
+		    }
+		    System.out.println();
+		}**/
 		return fieldValues;
 	}
 	
