@@ -80,7 +80,12 @@ public class GameController {
             newY += yInc;
         }
         
-        
+        for(int i = 0; i < numArchers; i++) {
+            newX = rand.nextInt(maxX - minX) + minX;
+            entities.add(new Archer(newX,newY, teamNum, collisionDetection, teamAI));
+            newY += yInc;
+        }
+
     }
 
     

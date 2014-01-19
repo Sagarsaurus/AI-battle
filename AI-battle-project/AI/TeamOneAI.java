@@ -19,7 +19,10 @@ public class TeamOneAI {
         {
             s.moveUp();
         }
-            
-            
+                  
+    }
+    
+    public static void archerAI(Archer a) {
+    	
     }
 }

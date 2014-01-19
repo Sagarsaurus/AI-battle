@@ -5,4 +5,8 @@ public class TeamZeroAI {
         s.moveForward();
         s.attack(Direction.FORWARD);
     }
+    
+    public static void archerAI(Archer a) {
+    	
+    }
 }
