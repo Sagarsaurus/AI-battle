@@ -20,7 +20,7 @@ public class Archer extends Character {
         sideView = 4;
         backView = 3;
         frontView = 15;
-        attackSpeed = 5;
+        attackSpeed = 2;
         currentAttackSpeed = 5;
 	}
 
