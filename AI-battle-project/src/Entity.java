@@ -9,6 +9,7 @@ public abstract class Entity {
     protected Sprite sprite;
     protected int x;
     protected int y;
+    protected int hp;
     protected Direction facing;
     
     protected CollisionDetection collisionDetection;
@@ -30,7 +31,7 @@ public abstract class Entity {
     public int getLeftEdge()
     {
         return getX() - getWidth() / 2;
-    }
+    }        int HP;
     
     public int getRightEdge()
     {

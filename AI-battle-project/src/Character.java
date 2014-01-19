@@ -9,22 +9,25 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
-abstract class Character extends Entity{
-        boolean LIFE = true;
-        int HP;
-        int teamNum;
-        
-        ArrayList<Coordinates> coordinates;
-        
-	public Character(){
-	    this(0,0,0, null);
-	}
-	
-	public Character(int x,int y, int teamNum, CollisionDetection collisionDetection)
-	{
-	    super(x,y, collisionDetection);
-	    this.teamNum = teamNum;
-	    if(teamNum == 0)
+abstract class Character extends Entity {
+    boolean LIFE = true;
+    int teamNum;
+    int attackStength = 1;
+
+    ArrayList<Coordinates> coordinates;
+
+    protected Class aiClass;
+
+    public Character() {
+        this(0, 0, 0, null, null);
+    }
+
+    public Character(int x, int y, int teamNum,
+            CollisionDetection collisionDetection, Class aiClass) {
+        super(x, y, collisionDetection);
+        this.teamNum = teamNum;
+        this.aiClass = aiClass;
+        if (teamNum == 0)
 	    {
 	        facing = Direction.RIGHT;
 	    }
@@ -34,11 +37,6 @@ abstract class Character extends Entity{
 	    }
 	}
 
-	public int getHP()
-	{
-	    return HP;
-	}
-	
 	public int getWidth()
 	{
 	    return (int)sprite.getWidth();
@@ -59,9 +57,42 @@ abstract class Character extends Entity{
         return y;
     }
 	
-
+	public boolean attack(Direction direction)
+	{
+	    Entity entity = collisionDetection.collisionAt(this, direction);
+	    if(entity != null)
+	    {
+	        entity.hp -= this.attackStength;
+	        return true;
+	    }
+	    return false;
+	    
+	}
 	public boolean canMove(Direction direction)
 	{
+	    if(direction == Direction.FORWARD)
+	    {
+	        if(facing == Direction.RIGHT)
+	        {
+	            return collisionDetection.collisionAt(this, Direction.RIGHT) == null;
+	        }
+	        else
+	        {
+	            return collisionDetection.collisionAt(this, Direction.LEFT) == null;
+	        }
+	    }
+	    else if(direction == Direction.BACKWARD)
+	    {
+	        if(facing == Direction.LEFT)
+            {
+                return collisionDetection.collisionAt(this, Direction.RIGHT) == null;
+            }
+            else
+            {
+                return collisionDetection.collisionAt(this, Direction.LEFT) == null;
+            }
+	    }
+	    
 	    return collisionDetection.collisionAt(this, direction) == null;
 	}
 	
@@ -129,6 +160,7 @@ abstract class Character extends Entity{
 	
 	public void update()
 	{
+	    
 	    moveForward();
 	    getView();
 	}

@@ -1,3 +1,5 @@
+import java.lang.reflect.InvocationTargetException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,19 +10,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Swordsman extends Character{
 	boolean LIFE = true;
 	final static int NUM_CHAR_SPACES = 6;
-	int HP;
 	
 	public Swordsman(){
-		this(0,0,0, null);
+		this(0,0,0, null, null);
 		
 	}
 	
-	public Swordsman(int x, int y, int teamNum, CollisionDetection collisionDetection)
+	public Swordsman(int x, int y, int teamNum, CollisionDetection collisionDetection, Class aiClass)
 	{
-	    super(x,y, teamNum, collisionDetection);
+	    super(x,y, teamNum, collisionDetection, aiClass);
 	    texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
 	    sprite = new Sprite(texture, 0, 0, GameController.CHARACTER_SIZE, GameController.CHARACTER_SIZE);
-	    HP = 1;
+	    HP = 2;
 	}
 	
 	public boolean canMove(int direction){
@@ -50,4 +51,28 @@ public class Swordsman extends Character{
             return "ES";
         }
     }
+	
+	public void update()
+	{
+	    try {
+	        
+            aiClass.getMethod("swordsmanAI", Swordsman.class).invoke(null, this);
+            
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	}
 }
