@@ -22,6 +22,9 @@ public class Swordsman extends Character{
 	    texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
 	    sprite = new Sprite(texture, 0, 0, GameController.CHARACTER_SIZE, GameController.CHARACTER_SIZE);
 	    hp = 2;
+	    sideView = 2;
+	    backView = 1;
+	    frontView = 4;
 	}
 	
 	public boolean canMove(int direction){

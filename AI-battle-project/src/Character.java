@@ -14,7 +14,9 @@ abstract class Character extends Entity {
     boolean LIFE = true;
     
     int attackStength = 1;
-
+    protected int frontView = 0;
+    protected int backView = 0;
+    protected int sideView = 0;
     ArrayList<Coordinates> coordinates;
 
     protected Class aiClass;
@@ -100,19 +102,7 @@ abstract class Character extends Entity {
 	    
 	}
 	
-	public void archerAttack() {
-		Arrow a = new Arrow(this.x, this.y, this.teamNum, collisionDetection, aiClass);
-		GameController.entities.add(a);
-		Random rand = new Random();
-		int index = rand.nextInt(GameController.entities.size());
-		while(GameController.entities.get(index).teamNum==this.teamNum) {
-			index = rand.nextInt(GameController.entities.size());
-		}
-		Entity target = GameController.entities.get(index);
-		a.deltaX = (target.getX()-a.getX())/10;
-		a.deltaY = (target.getY()-a.getY())/10;
-		
-	}
+	
 	
 	public boolean canMove(Direction direction)
 	{
@@ -250,13 +240,13 @@ abstract class Character extends Entity {
         
         if(facing == Direction.RIGHT)
         {
-            viewTopX = x - (int)(GameController.CHARACTER_SIZE*1.5);
-            viewTopY = y + (int)(GameController.CHARACTER_SIZE*2.5);
+            viewTopX = x - (int)(GameController.CHARACTER_SIZE * backView + 0.5);
+            viewTopY = y + (int)(GameController.CHARACTER_SIZE * sideView + 0.5);
         }
         else
         {
-            viewTopX = (int)(x - GameController.CHARACTER_SIZE*4.5);
-            viewTopY = (int)(y + GameController.CHARACTER_SIZE*2.5); 
+            viewTopX = (int)(x - GameController.CHARACTER_SIZE * frontView + 0.5);
+            viewTopY = (int)(y + GameController.CHARACTER_SIZE * sideView + 0.5); 
         }
         
 		for(Entity each: GameController.entities){

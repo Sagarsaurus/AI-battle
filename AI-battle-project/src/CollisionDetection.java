@@ -31,6 +31,21 @@ public class CollisionDetection {
         return false;
     }
     
+    public Entity collision(Entity collisionEntity)
+    {
+        for(Entity entity: entities)
+        {
+            if(entity != collisionEntity &&
+                    collisionEntity.getTopEdge() > entity.getBottomEdge() &&
+                    collisionEntity.getBottomEdge()  < entity.getTopEdge() &&
+                    collisionEntity.getRightEdge()  > entity.getLeftEdge() &&
+                    collisionEntity.getLeftEdge() < entity.getRightEdge())
+                    {
+                         return entity;
+                    }  
+        }
+        return null;
+    }
     public Entity collisionAt(Entity collisionEntity, Direction direction)
     {
         int xDir = 0;

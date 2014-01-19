@@ -64,7 +64,6 @@ public class TeamOneAI {
     }
     
     public static void archerAI(Archer a) {
-    	System.out.println("got here");
-    	a.archerAttack();
+    	a.shoot(GameController.CHARACTER_SIZE * 30,0);
     }
 }

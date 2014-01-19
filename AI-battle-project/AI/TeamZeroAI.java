@@ -58,6 +58,6 @@ public class TeamZeroAI {
     }
     
     public static void archerAI(Archer a) {
-    	a.archerAttack();
+        a.shoot(GameController.CHARACTER_SIZE * 30,0);
     }
 }
