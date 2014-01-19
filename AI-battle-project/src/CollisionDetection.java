@@ -40,7 +40,7 @@ public class CollisionDetection {
             for(Entity entity: entities)
             {
                 if(entity != collisionEntity &&
-                        collisionEntity.getTopEdge() + 10 > entity.getBottomEdge() &&
+                        collisionEntity.getTopEdge() + 5 > entity.getBottomEdge() &&
                         collisionEntity.getBottomEdge()  < entity.getTopEdge() &&
                         collisionEntity.getRightEdge()  > entity.getLeftEdge() &&
                         collisionEntity.getLeftEdge() < entity.getRightEdge())
@@ -55,7 +55,7 @@ public class CollisionDetection {
             {
                 if(entity != collisionEntity &&
                         collisionEntity.getTopEdge() > entity.getBottomEdge() &&
-                        collisionEntity.getBottomEdge() - 10< entity.getTopEdge() &&
+                        collisionEntity.getBottomEdge() - 5 < entity.getTopEdge() &&
                         collisionEntity.getRightEdge() > entity.getLeftEdge() &&
                         collisionEntity.getLeftEdge() < entity.getRightEdge())
                         {
@@ -71,7 +71,7 @@ public class CollisionDetection {
                         collisionEntity.getTopEdge() > entity.getBottomEdge() &&
                         collisionEntity.getBottomEdge() < entity.getTopEdge() &&
                         collisionEntity.getRightEdge() > entity.getLeftEdge() &&
-                        collisionEntity.getLeftEdge() - 10 < entity.getRightEdge())
+                        collisionEntity.getLeftEdge() - 5 < entity.getRightEdge())
                         {
                              return entity;
                         }
@@ -84,7 +84,7 @@ public class CollisionDetection {
                 if(entity != collisionEntity &&
                    collisionEntity.getTopEdge() > entity.getBottomEdge() &&
                    collisionEntity.getBottomEdge() < entity.getTopEdge() &&
-                   collisionEntity.getRightEdge() + 10 > entity.getLeftEdge() &&
+                   collisionEntity.getRightEdge() + 5 > entity.getLeftEdge() &&
                    collisionEntity.getLeftEdge() < entity.getRightEdge())
                    {
                         return entity;

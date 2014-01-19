@@ -256,8 +256,7 @@ abstract class Character extends Entity {
 			
 			if(eachY < viewTopY && eachY > viewTopY - GameController.CHARACTER_SIZE*5){
 				if (eachX > viewTopX && eachX < viewTopX + GameController.CHARACTER_SIZE*6){
-					String sample = each.toString();
-					String assign = determineAssignment(sample, each);	
+					String assign = each.getType(teamNum);;	
 					
 					if(!fieldValues.containsKey(assign)){
 						
@@ -266,10 +265,7 @@ abstract class Character extends Entity {
 				        fieldValues.put(assign,temp);
 					}
 					else{
-						coordinates = fieldValues.get(assign);
-						Coordinates coord = new Coordinates(eachX, eachY);
-						coordinates.add(coord);
-						fieldValues.put(assign, coordinates);
+						fieldValues.get(assign).add(new Coordinates(eachX, eachY));
 					}
 				}	
 			}
@@ -290,13 +286,7 @@ abstract class Character extends Entity {
 		}**/
 		return fieldValues;
 	}
-	
-	public String determineAssignment(String s, Entity e){
-		int at = s.indexOf("@");
-		String s2 = s.substring(0, at);
-		
-		return e.getType(teamNum);
-	}
+
 	private class Pair<E, A>{
 		public final E e;
 		public final A a;
