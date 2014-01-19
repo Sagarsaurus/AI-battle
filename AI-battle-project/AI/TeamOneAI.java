@@ -2,6 +2,24 @@
 public class TeamOneAI {
     public static void swordsmanAI(Swordsman s)
     {
-        s.moveForward();
+        
+        if(s.canAttack(Direction.FORWARD))
+        {
+            s.attack(Direction.FORWARD);
+        }
+        else if(s.canMove(Direction.FORWARD))
+        {
+           s.moveForward();
+        }
+        else if(s.canAttack(Direction.UP))
+        {
+            s.attack(Direction.UP);
+        }
+        else if(s.canMove(Direction.UP))
+        {
+            s.moveUp();
+        }
+            
+            
     }
 }

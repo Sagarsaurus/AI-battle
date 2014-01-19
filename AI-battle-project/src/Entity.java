@@ -11,6 +11,7 @@ public abstract class Entity {
     protected int y;
     protected int hp;
     protected Direction facing;
+    int teamNum;
     
     protected CollisionDetection collisionDetection;
     public abstract int getWidth();
@@ -22,16 +23,18 @@ public abstract class Entity {
     
     public Entity(int x, int y, CollisionDetection collisionDetection)
     {
+        teamNum = -1;
         this.x = x;
         this.y = y;
         this.collisionDetection = collisionDetection;
         facing = Direction.RIGHT;
+        hp = 1;
     }
     
     public int getLeftEdge()
     {
         return getX() - getWidth() / 2;
-    }        int HP;
+    }
     
     public int getRightEdge()
     {
@@ -48,6 +51,10 @@ public abstract class Entity {
         return getY() - getHeight() / 2;
     }
     
+    public boolean isGone()
+    {
+        return hp <= 0;
+    }
     public void update() {}
     
     

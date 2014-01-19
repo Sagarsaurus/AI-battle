@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 abstract class Character extends Entity {
     boolean LIFE = true;
-    int teamNum;
+    
     int attackStength = 1;
 
     ArrayList<Coordinates> coordinates;
@@ -59,10 +59,40 @@ abstract class Character extends Entity {
 	
 	public boolean attack(Direction direction)
 	{
-	    Entity entity = collisionDetection.collisionAt(this, direction);
-	    if(entity != null)
+	    Entity entity;
+	    if(direction == Direction.FORWARD)
+        {
+            if(facing == Direction.RIGHT)
+            {
+                entity = collisionDetection.collisionAt(this, Direction.RIGHT);
+            }
+            else
+            {
+               entity = collisionDetection.collisionAt(this, Direction.LEFT);
+            }
+        }
+        else if(direction == Direction.BACKWARD)
+        {
+            if(facing == Direction.LEFT)
+            {
+                entity = collisionDetection.collisionAt(this, Direction.RIGHT);
+            }
+            else
+            {
+                entity =collisionDetection.collisionAt(this, Direction.LEFT);
+            }
+        }
+        else
+        {
+            
+            entity = collisionDetection.collisionAt(this, direction);
+        }
+        
+        
+	    if(entity != null && entity.teamNum != -1 && entity.teamNum != this.teamNum)
 	    {
 	        entity.hp -= this.attackStength;
+	        
 	        return true;
 	    }
 	    return false;
@@ -74,36 +104,63 @@ abstract class Character extends Entity {
 	    {
 	        if(facing == Direction.RIGHT)
 	        {
-	            return collisionDetection.collisionAt(this, Direction.RIGHT) == null;
+	            return collisionDetection.collisionAt(this, Direction.RIGHT) == null &&
+	                   !collisionDetection.collisionWall(this, Direction.RIGHT);
 	        }
 	        else
 	        {
-	            return collisionDetection.collisionAt(this, Direction.LEFT) == null;
+	            return collisionDetection.collisionAt(this, Direction.LEFT) == null &&
+	                   !collisionDetection.collisionWall(this, Direction.LEFT);
 	        }
 	    }
 	    else if(direction == Direction.BACKWARD)
 	    {
 	        if(facing == Direction.LEFT)
             {
-                return collisionDetection.collisionAt(this, Direction.RIGHT) == null;
+                return collisionDetection.collisionAt(this, Direction.RIGHT) == null &&
+                       !collisionDetection.collisionWall(this, Direction.RIGHT);
             }
             else
             {
-                return collisionDetection.collisionAt(this, Direction.LEFT) == null;
+                return collisionDetection.collisionAt(this, Direction.LEFT) == null &&
+                       !collisionDetection.collisionWall(this, Direction.LEFT);
             }
 	    }
 	    
-	    return collisionDetection.collisionAt(this, direction) == null;
+	    return collisionDetection.collisionAt(this, direction) == null && !collisionDetection.collisionWall(this, direction);
 	}
 	
 	public boolean canAttack(Direction direction)
     {
+	    if(direction == Direction.FORWARD)
+        {
+            if(facing == Direction.RIGHT)
+            {
+                return collisionDetection.collisionAt(this, Direction.RIGHT) != null;
+            }
+            else
+            {
+                return collisionDetection.collisionAt(this, Direction.LEFT) != null;
+            }
+        }
+        else if(direction == Direction.BACKWARD)
+        {
+            if(facing == Direction.LEFT)
+            {
+                return collisionDetection.collisionAt(this, Direction.RIGHT) != null;
+            }
+            else
+            {
+                return collisionDetection.collisionAt(this, Direction.LEFT) != null;
+            }
+        }
         return collisionDetection.collisionAt(this, direction) != null;
     }
 	
 	public void moveUp()
     {
-        if((collisionDetection.collisionAt(this, Direction.UP) == null))
+        if((collisionDetection.collisionAt(this, Direction.UP) == null) &&
+            !collisionDetection.collisionWall(this, Direction.UP))
         {
             y += GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
@@ -111,7 +168,8 @@ abstract class Character extends Entity {
 	
 	public void moveDown()
     {
-        if(collisionDetection.collisionAt(this, Direction.DOWN) == null)
+        if(collisionDetection.collisionAt(this, Direction.DOWN) == null &&
+           !collisionDetection.collisionWall(this, Direction.DOWN))
         {
             y -= GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
@@ -119,14 +177,16 @@ abstract class Character extends Entity {
 	
 	private void moveLeft()
     {
-        if(collisionDetection.collisionAt(this, Direction.LEFT) == null)
+        if(collisionDetection.collisionAt(this, Direction.LEFT) == null &&
+           !collisionDetection.collisionWall(this, Direction.LEFT))
         {
             x -= GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
     }
 	private void moveRight()
     {
-        if(collisionDetection.collisionAt(this, Direction.RIGHT) == null)
+        if(collisionDetection.collisionAt(this, Direction.RIGHT) == null &&
+           !collisionDetection.collisionWall(this, Direction.RIGHT))
         {
             x += GameController.CHARACTER_SIZE*6 * Gdx.graphics.getDeltaTime();
         }
@@ -160,9 +220,6 @@ abstract class Character extends Entity {
 	
 	public void update()
 	{
-	    
-	    moveForward();
-	    getView();
 	}
 	
 	public abstract String getType(int perspectiveTeam);

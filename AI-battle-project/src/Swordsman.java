@@ -21,20 +21,13 @@ public class Swordsman extends Character{
 	    super(x,y, teamNum, collisionDetection, aiClass);
 	    texture = new Texture(Gdx.files.internal("assets/swordsman.png"));
 	    sprite = new Sprite(texture, 0, 0, GameController.CHARACTER_SIZE, GameController.CHARACTER_SIZE);
-	    HP = 2;
+	    hp = 2;
 	}
 	
 	public boolean canMove(int direction){
 		return true;
 	}
-	
-	public boolean isDead(int hp){
-		return HP==0;
-	}
-	
-	public int returnHP(){
-		return HP;
-	}
+
 	
 	public Sprite getSprite() {
 		return sprite;

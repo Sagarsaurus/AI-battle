@@ -9,6 +9,28 @@ public class CollisionDetection {
         this.entities = entities;
     }
     
+    public boolean collisionWall(Entity collisionEntity, Direction direction)
+    {
+        if(collisionEntity.getTopEdge() + 10 > GameController.CHARACTER_SIZE * 20 && direction == Direction.UP)     
+        {
+            return true;
+        }
+        else if(collisionEntity.getBottomEdge() - 10 < 0 && direction == Direction.DOWN)
+        {
+            return true;
+        }
+        else if(collisionEntity.getLeftEdge() - 10 < 0 && direction == Direction.LEFT)
+        {
+            return true;
+        }
+        else if(collisionEntity.getRightEdge() + 10 > GameController.CHARACTER_SIZE * 30 && direction == Direction.RIGHT) 
+        {
+            return true;
+        }
+        
+        return false;
+    }
+    
     public Entity collisionAt(Entity collisionEntity, Direction direction)
     {
         int xDir = 0;
@@ -18,11 +40,10 @@ public class CollisionDetection {
             for(Entity entity: entities)
             {
                 if(entity != collisionEntity &&
-                        collisionEntity.getTopEdge() > entity.getBottomEdge() &&
-                        collisionEntity.getBottomEdge() + 5 < entity.getTopEdge() &&
+                        collisionEntity.getTopEdge() + 10 > entity.getBottomEdge() &&
+                        collisionEntity.getBottomEdge()  < entity.getTopEdge() &&
                         collisionEntity.getRightEdge()  > entity.getLeftEdge() &&
-                        collisionEntity.getLeftEdge() < entity.getRightEdge() ||
-                        collisionEntity.getTopEdge() + 5 > GameController.CHARACTER_SIZE * 20)
+                        collisionEntity.getLeftEdge() < entity.getRightEdge())
                         {
                              return entity;
                         }  
@@ -34,10 +55,9 @@ public class CollisionDetection {
             {
                 if(entity != collisionEntity &&
                         collisionEntity.getTopEdge() > entity.getBottomEdge() &&
-                        collisionEntity.getBottomEdge() - 5< entity.getTopEdge() &&
+                        collisionEntity.getBottomEdge() - 10< entity.getTopEdge() &&
                         collisionEntity.getRightEdge() > entity.getLeftEdge() &&
-                        collisionEntity.getLeftEdge() < entity.getRightEdge() ||
-                        collisionEntity.getBottomEdge() - 5 < 0)
+                        collisionEntity.getLeftEdge() < entity.getRightEdge())
                         {
                              return entity;
                         } 
@@ -51,8 +71,7 @@ public class CollisionDetection {
                         collisionEntity.getTopEdge() > entity.getBottomEdge() &&
                         collisionEntity.getBottomEdge() < entity.getTopEdge() &&
                         collisionEntity.getRightEdge() > entity.getLeftEdge() &&
-                        collisionEntity.getLeftEdge() - 5 < entity.getRightEdge() ||
-                        collisionEntity.getLeftEdge() - 5 < 0)
+                        collisionEntity.getLeftEdge() - 10 < entity.getRightEdge())
                         {
                              return entity;
                         }
@@ -65,9 +84,8 @@ public class CollisionDetection {
                 if(entity != collisionEntity &&
                    collisionEntity.getTopEdge() > entity.getBottomEdge() &&
                    collisionEntity.getBottomEdge() < entity.getTopEdge() &&
-                   collisionEntity.getRightEdge() + 5 > entity.getLeftEdge() &&
-                   collisionEntity.getLeftEdge() < entity.getRightEdge() || 
-                   collisionEntity.getRightEdge() + 5 > GameController.CHARACTER_SIZE * 30)
+                   collisionEntity.getRightEdge() + 10 > entity.getLeftEdge() &&
+                   collisionEntity.getLeftEdge() < entity.getRightEdge())
                    {
                         return entity;
                    }
