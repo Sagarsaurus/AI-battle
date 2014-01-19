@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class TeamZeroAI {
@@ -58,6 +59,12 @@ public class TeamZeroAI {
     }
     
     public static void archerAI(Archer a) {
-        a.shoot(GameController.CHARACTER_SIZE * 30,0);
+    	Random rand = new Random();
+    	int index = rand.nextInt(GameController.entities.size());
+    	while(GameController.entities.get(index).teamNum==a.teamNum) {
+    		index = rand.nextInt(GameController.entities.size());
+    	}
+    	
+        a.shoot(GameController.entities.get(index).x,GameController.entities.get(index).y);
     }
 }
