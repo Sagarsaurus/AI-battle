@@ -92,12 +92,14 @@ public class GameController {
 	    for(int i = 0; i < entities.size(); i++)
         {
 	            entities.get(i).update();
+	            
 	            if(entities.get(i).isGone())
 	            {
+	                System.out.println("isgone");
 	                String type = entities.get(i).getType(0);
 	                if(type.equals("FC") || type.equals("EC"))
 	                {
-	                    System.exit(0);
+	              //      System.exit(0);
 	                }
 	                entities.remove(entities.get(i));
 	                i--;
